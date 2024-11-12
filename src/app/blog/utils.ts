@@ -61,7 +61,7 @@ export const getBlogPosts = ()=>{
 
 /* write function to get the date */
 
-export const formatDate = (date: string, includesRelative = false)=>{
+export const formatDate = (date: string, includesRelative = true)=>{
   // we create a new date object from the date string
   let currentDate = new Date(date);
   if(!date.includes('T')){

@@ -1,7 +1,14 @@
+import { LatestPosts } from "@/components/latest-posts";
+import { MainNav } from "@/components/main-nav";
 
 export default function Home() {
   return (
-   <><h1>Mdx Blog</h1>
+   <>
+   <MainNav/>
+   <main>
+    <LatestPosts/>
+    </main>
+
    </>
   );
 }
