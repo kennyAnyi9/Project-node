@@ -1,52 +1,89 @@
+/**
+ * import the necessary packages
+ */
 const path = require("path")
-const fs = require("fs")
-const { isUtf8 } = require("buffer")
+const fs = require('fs')
 
 
-// tell node where to store my data
+/**
+ * tell node where to store your data by defining the paths
+ */
 
-const DATA_DIR = path.join(__dirname, "../../data")
-const DATA_FILE = path.join(DATA_DIR, "task.json")
+//get the path to the data file
+const DATA_DIR = path.join(__dirname, '../data')
+//get the path to the task.json file
+const TASK_FILE = path.join(DATA_DIR, 'tasks.json')
 
-//decalare function to initialize storage
 
+
+/**
+ * initialize storage
+
+ */
 const initializeStorage = () =>{
-  //check if data directory exists, if not create one
-  try{
-    if(!fs.existsSync("DATA_DIR")){
-      fs.mkdirSync("DATA_DIR")
+    try{
+        //check if dir exists, if not create one
+        if(!fs.existsSync(DATA_DIR)){
+            fs.mkdirSync(DATA_DIR)
+        }
+        //check if file exits, if not create one
+        if(!fs.existsSync(TASK_FILE)){
+            const initialData ={
+                tasks: []
+            }
+
+            fs.writeFileSync(TASK_FILE, JSON.stringify(initialData, null,2))
+        }
+
+    }catch(e){
+        console.log("error initializing storage:", e.message)
     }
-
-    if(!fs.existsSync(DATA_FILE)){
-      const initializeData={
-        tasks:[]
-
-
-      };
-
-      fs.writeFileSync(DATA_FILE, JSON.stringify(initializeData, null, 2))
-    }
-
-
-
-  }catch{
-    console.log("something went wrong")
-  }
 }
 
 
-const readTasks = () =>{
-  try{
-      const data = fs.readFileSync(DATA_FILE, "utf-8")
-      return JSON.parse(data).tasks;
+/**
+ * write fuction to read tasks
 
-  }catch{
-    console.log("something went wrong")
-    return []
-  }
+ */
+const readTasks =()=>{
+
+    try{
+    // read the file and store content in a variable
+    const data = fs.readFileSync(TASK_FILE, "utf8")
+
+    //parse the data as stringified JSON
+    return JSON.parse(data).tasks;
+
+    }catch(e){
+        console.error("Error reading tasks:", e.message)
+        return []
+    }
+}
+
+/**
+ * write function to save tasks
+ */
+
+const saveTasks = (task) =>{
+    try{
+
+        const data = {
+            tasks: task
+        }
+        fs.writeFileSync(TASK_FILE, JSON.stringify(data, null, 2))
+    }catch(e){
+        console.error('Error saving task:', e.message)
+    }
+
 }
 
 
-const saveTasks =()=>{
+/**
+ * export the functions
+ */
 
+module.exports = {
+    initializeStorage,
+    readTasks,
+    saveTasks
 }
