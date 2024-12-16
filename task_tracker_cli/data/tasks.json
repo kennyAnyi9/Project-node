@@ -1,6 +1,7 @@
 {
   "tasks": [
     {
+<<<<<<< HEAD
       "id": 6,
       "description": "This is an updated description",
       "status": "done",
@@ -13,6 +14,20 @@
       "status": "in progress",
       "createdAt": "2024-12-15T09:05:08.887Z",
       "updatedAt": "2024-12-15T09:06:55.517Z"
+=======
+      "id": 2,
+      "description": "task2",
+      "status": "todo",
+      "createdAt": "2024-12-14T17:41:36.598Z",
+      "updatedAt": "2024-12-14T17:41:36.598Z"
+    },
+    {
+      "id": 3,
+      "description": "task3",
+      "status": "todo",
+      "createdAt": "2024-12-14T17:41:49.188Z",
+      "updatedAt": "2024-12-14T17:41:49.188Z"
+>>>>>>> 22c9fb5c3d73f7f11aa9dd051bfdfc24c205c4ca
     }
   ]
 }
